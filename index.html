@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Event Registration Form</title>
+
+<style>
+
+body{
+    font-family: Arial;
+    background-color: peachpuff;
+    text-align: center;
+}
+
+.container{
+    background-color: white;
+    width: 350px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+h2{
+    color: darkblue;
+}
+
+button{
+    background-color: green;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+}
+
+.reset{
+    background-color: red;
+    color: white;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+select{
+    padding: 5px;
+    width: 250px;
+}
+
+.gender{
+    margin: 5px 0;
+}
+
+.gender input{
+    width: auto;
+    margin-right: 2px;
+}
+
+.gender label{
+    margin-right: 10px;
+}
+
+</style>
+
+<script>
+function checkForm(form)
+{
+    // Username Validation
+    if(form.username.value == "") 
+    {
+        alert("Error: Username cannot be blank!");
+        form.username.focus();
+        return false;
+    }
+
+    let re = /^[A-Za-z ]+$/;
+
+    if(!re.test(form.username.value)) 
+    {
+        alert("Error: Name must contain only letters!");
+        form.username.focus();
+        return false;
+    }
+
+    // Email Validation
+    if(form.email.value == "")
+    {
+        alert("Error: Email cannot be blank!");
+        form.email.focus();
+        return false;
+    }
+
+    if(!form.email.value.endsWith("@gmail.com"))
+    {
+        alert("Error: Email must end with @gmail.com");
+        form.email.focus();
+        return false;
+    }
+
+    // Phone Number Validation
+    let phone = /^[0-9]{10}$/;
+
+    if(form.phone.value == "")
+    {
+        alert("Error: Phone number cannot be blank!");
+        form.phone.focus();
+        return false;
+    }
+
+    if(!phone.test(form.phone.value))
+    {
+        alert("Error: Enter a valid 10-digit phone number!");
+        form.phone.focus();
+        return false;
+    }
+
+    // Message Validation
+    if(form.message.value == "")
+    {
+        alert("Error: Address/Message cannot be empty!");
+        form.message.focus();
+        return false;
+    }
+
+    alert("Registration Successful!");
+    return true;
+}
+</script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Event Registration</h2>
+
+<form onsubmit="return checkForm(this);">
+
+Username:<br>
+<input type="text" name="username"><br><br>
+
+Email:<br>
+<input type="email" name="email"><br><br>
+
+Phone Number:<br>
+<input type="tel" name="phone"><br><br>
+
+Gender:<br>
+
+<div class="gender">
+    <input type="radio" name="gender" id="male">
+    <label for="male">Male</label>
+
+    <input type="radio" name="gender" id="female">
+    <label for="female">Female</label>
+
+    <input type="radio" name="gender" id="other">
+    <label for="other">Other</label>
+</div>
+
+<br>
+
+Select Event:<br>
+<select>
+<option>Workshop</option>
+<option>Seminar</option>
+<option>Cultural Event</option>
+<option>Sports Event</option>
+</select>
+
+<br><br>
+
+Address:<br>
+<textarea name="message"></textarea><br><br>
+
+Upload ID:<br>
+<input type="file"><br><br>
+
+<button type="submit">Register</button>
+<button type="reset" class="reset">Clear</button>
+
+</form>
+
+</div>
+
+</body>
+</html>
